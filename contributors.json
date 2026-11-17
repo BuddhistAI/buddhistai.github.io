@@ -3,7 +3,7 @@
   "people": [
     {
       "login": "ngawangtrinley",
-      "contributions": 44,
+      "contributions": 46,
       "sources": [
         "buddhist-skills",
         "buddhist-benchmarks",
@@ -11,6 +11,13 @@
         "toc-extraction-tibetan",
         "knowledge-base",
         "buddhistai.github.io",
+        "credited"
+      ]
+    },
+    {
+      "login": "kaldan007",
+      "contributions": 0,
+      "sources": [
         "credited"
       ]
     },
