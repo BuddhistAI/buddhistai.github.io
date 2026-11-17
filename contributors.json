@@ -1,7 +1,25 @@
 {
   "org": "BuddhistAI",
   "people": [
-    {"login": "ngawangtrinley", "contributions": 0, "sources": ["credited"]},
-    {"login": "WeBuddhist", "contributions": 0, "sources": ["credited"]}
+    {
+      "login": "ngawangtrinley",
+      "contributions": 44,
+      "sources": [
+        "buddhist-skills",
+        "buddhist-benchmarks",
+        ".github",
+        "toc-extraction-tibetan",
+        "knowledge-base",
+        "buddhistai.github.io",
+        "credited"
+      ]
+    },
+    {
+      "login": "WeBuddhist",
+      "contributions": 0,
+      "sources": [
+        "credited"
+      ]
+    }
   ]
 }
