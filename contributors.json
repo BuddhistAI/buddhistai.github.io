@@ -3,7 +3,7 @@
   "people": [
     {
       "login": "ngawangtrinley",
-      "contributions": 46,
+      "contributions": 50,
       "sources": [
         "buddhist-skills",
         "buddhist-benchmarks",
@@ -11,6 +11,7 @@
         "toc-extraction-tibetan",
         "knowledge-base",
         "buddhistai.github.io",
+        "member",
         "credited"
       ]
     },
@@ -27,6 +28,15 @@
       "sources": [
         "credited"
       ]
+    }
+  ],
+  "others": [
+    {
+      "name": "Shoukei Matsumoto",
+      "sources": [
+        "community"
+      ],
+      "url": "https://www.living-dharma.com/p/my-dharmamd"
     }
   ]
 }
