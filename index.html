@@ -269,6 +269,10 @@ tr.base td{color:var(--muted)}
 .boards{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px}
 .boards .btn{padding:9px 14px;font-size:13px}
 @media (max-width:860px){.req{grid-template-columns:1fr}}
+.sub-lab{font:600 14px var(--f-body);color:var(--bg);margin-top:4px}
+.submit .picker{background:var(--bg);color:var(--ink);border-color:transparent}
+.bench-line{font-size:13px;color:color-mix(in srgb,var(--bg) 75%,var(--ink))}
+.bench-line b{color:var(--bg)}
 /* data map */
 .map{overflow-x:auto}
 .map svg{min-width:760px;width:100%;height:auto;display:block}
@@ -613,6 +617,23 @@ footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between}
           <button type="button" role="radio" aria-checked="false" data-k="model">A model</button>
           <button type="button" role="radio" aria-checked="false" data-k="bench">Benchmark data</button>
         </div>
+        <label for="sub-task" class="sub-lab">Which task is it for?</label>
+        <select id="sub-task" class="picker">
+          <option value="toc-extraction">Table-of-contents extraction</option>
+          <option value="text-cleanup">Text cleanup</option>
+          <option value="segmentation">Segmentation</option>
+          <option value="entity-extraction">Entity extraction</option>
+          <option value="citation-mapping">Citation mapping</option>
+          <option value="text-translation-alignment">Text-translation alignment</option>
+          <option value="text-commentary-alignment">Text-commentary alignment</option>
+          <option value="term-extraction">Term extraction</option>
+          <option value="translation">Translation</option>
+          <option value="translation-review">Translation review</option>
+          <option value="qa">Questions on Buddhist teachings (Q&amp;A)</option>
+          <option value="all">All tasks (a general model)</option>
+          <option value="new">A new task, not listed</option>
+        </select>
+        <div class="bench-line" id="sub-bench"></div>
         <label for="repo" class="sr">GitHub repository URL</label>
         <div class="field">
           <input id="repo" type="url" inputmode="url" autocomplete="off" placeholder="https://github.com/you/your-skill">
@@ -722,11 +743,23 @@ const flows={
   steps:[["We read the repo","Find the data files, check the format, and suggest the task and language. You confirm."],["Listed as Draft","Your set gets its own page at maturity level 2, credited to you."],["Reviewed","A second reader from the tradition checks the answers. Then it moves to Reviewed."],["Every skill re-scored","All skills for the task are run on your set, and its scores appear beside the other benchmarks."],["Announced","When your set goes live, we thank you and announce it on LinkedIn and X, crediting you and your team."]]}
 };
 let kind="skill";
+const subBench={
+ "toc-extraction":"Scored on <b>TOC extraction, Tibetan 2.0.0</b> (85 passages). Your result goes on the leaderboard.",
+ "qa":"Scored on the Q&amp;A benchmarks, starting with <b>Thai Dhamma exams</b> (4,075 questions).",
+ "all":"Scored on <b>every benchmark</b>, with no skill and with each top skill.",
+ "segmentation":"Benchmark <b>in progress</b>. Your entry is listed now and scored when it is ready.",
+ "new":"New task? We open a <b>request</b> on the Skills board, so others can vote and help build a benchmark."
+};
+function benchLine(){const t=document.getElementById("sub-task").value;
+ if(kind==="bench"&&t!=="new"&&subBench[t]){document.getElementById("sub-bench").innerHTML=t==="toc-extraction"?"Existing benchmark: <b>TOC extraction, Tibetan 2.0.0</b>. Your data extends it or becomes a second set; every skill is scored on both.":"Your data joins the benchmarks for this task, and every skill is scored on it.";return}
+ document.getElementById("sub-bench").innerHTML=subBench[t]||(kind==="bench"?"No benchmark yet. <b>Your data could be the first one</b> for this task.":"No benchmark yet. Your entry is listed in Community now and scored once a benchmark exists.");}
+document.getElementById("sub-task").addEventListener("change",benchLine);
+
 function setKind(k){kind=k;const f=flows[k];
  document.querySelectorAll("#paste .toggle button").forEach(b=>b.setAttribute("aria-checked",b.dataset.k===k));
  document.getElementById("repo").placeholder=f.ph;document.getElementById("hint").textContent=f.hint;
  document.getElementById("steps").innerHTML=f.steps.map(([t,d])=>`<li><div><b>${t}</b><span>${d}</span></div></li>`).join("");
- document.getElementById("detect").hidden=true;}
+ document.getElementById("detect").hidden=true;if(document.getElementById("sub-task"))benchLine();}
 document.querySelectorAll("#paste .toggle button").forEach(b=>b.addEventListener("click",()=>setKind(b.dataset.k)));
 document.getElementById("paste").addEventListener("submit",e=>{e.preventDefault();
  const v=document.getElementById("repo").value.trim();if(!v){document.getElementById("repo").focus();return}
@@ -734,8 +767,12 @@ document.getElementById("paste").addEventListener("submit",e=>{e.preventDefault(
  document.getElementById("err").hidden=ok;if(!ok){document.getElementById("detect").hidden=true;return}
  const what={skill:"skill",model:"model",bench:"benchmark data"}[kind];
  const url=/^https?:\/\//.test(v)?v:"https://"+v;
- const q=new URLSearchParams({title:"Submit "+what+": "+url.replace(/^https?:\/\/(www\.)?/,""),body:"Link: "+url+"\n\nWhat it is ("+what+"):\n\nTask and language:\n\nLicense:\n"});
- window.open("https://github.com/BuddhistAI/buddhist-skills/issues/new?"+q.toString(),"_blank","noopener");});
+ const sel=document.getElementById("sub-task"),task=sel.value,taskName=sel.options[sel.selectedIndex].text;
+ const short=url.replace(/^https?:\/\/(www\.)?/,"");let base,q;
+ if(task==="new"&&kind==="bench"){base="https://github.com/BuddhistAI/buddhist-benchmarks/issues/new?";q=new URLSearchParams({template:"propose-benchmark.yml",title:"Propose benchmark: "+short})}
+ else if(task==="new"){base="https://github.com/BuddhistAI/buddhist-skills/issues/new?";q=new URLSearchParams({template:"request.yml",title:"New task, with a "+what+": "+short,example:"My "+what+": "+url})}
+ else{base="https://github.com/BuddhistAI/buddhist-skills/issues/new?";q=new URLSearchParams({title:"Submit "+what+" for "+taskName+": "+short,body:"Link: "+url+"\n\nWhat it is: "+what+"\n\nTask: "+taskName+" ("+task+")\n\nLanguage:\n\nLicense:\n"})}
+ window.open(base+q.toString(),"_blank","noopener");});
 document.getElementById("bench-cta").querySelector("a").addEventListener("click",()=>setKind("bench"));
 document.querySelectorAll('a[data-kind="model"]').forEach(a=>a.addEventListener("click",()=>setKind("model")));
 document.querySelectorAll("#mode button").forEach(b=>b.addEventListener("click",()=>{
