@@ -1,0 +1,36 @@
+name: Update contributors
+
+# Adds every commit author of a public BuddhistAI repository, every public org member,
+# and the people in contributors-extra.json to the contributor row on the homepage.
+on:
+  schedule:
+    - cron: '17 3 * * *'   # daily
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [contributors-extra.json, scripts/update_contributors.py]
+
+permissions:
+  contents: write
+
+concurrency: contributors
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 scripts/update_contributors.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit if changed
+        run: |
+          git add contributors.json index.html
+          if git diff --cached --quiet; then echo "No change"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update contributors"
+          git push

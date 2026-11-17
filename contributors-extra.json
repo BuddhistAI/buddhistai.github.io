@@ -1,0 +1,8 @@
+{
+  "_note": "People and groups to credit by hand, for example an author of imported data with no commit in a BuddhistAI repository. Everyone with a commit or a public org membership is added automatically.",
+  "skip": ["claude", "Copilot", "actions-user"],
+  "people": [
+    {"login": "ngawangtrinley"},
+    {"login": "WeBuddhist"}
+  ]
+}
