@@ -321,6 +321,7 @@ footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between}
       <h2>Find the best AI for your task</h2>
       <label for="pick-task" class="step">What do you need to do?</label>
       <select id="pick-task" class="picker">
+        <option value="ocr" selected>Read Tibetan text from page images (OCR)</option>
         <option value="toc">Extract the outline of a Tibetan commentary</option>
         <option value="clean">Clean up OCR text</option>
         <option value="seg">Split a text into sentences</option>
@@ -811,6 +812,7 @@ document.querySelectorAll("#mode button").forEach(b=>b.addEventListener("click",
 setKind("skill");
 
 const answers={
+ ocr:{html:`<div class="answer"><div class="pick top"><span class="lab">Top performance</span><span class="score num">3.2%</span><span class="meta">character errors (lower is better) · BDRC OCR Yigdzin-v1</span></div><div class="pick val"><span class="lab">Best value</span><span class="score" style="font-size:16px">Not measured yet</span><span class="meta">This board has no cost data. Runner-up: MITRA-BDRC (Qwen 0.8B), 7.3%</span></div><div class="note">From BDRC's open <a href="https://huggingface.co/spaces/BDRC/tibetan-ocr-leaderboard">Tibetan OCR leaderboard</a>: 472 pages of woodblock prints and manuscripts, updated 2026-11-07.</div></div>`},
  toc:{top:["0.962","sa-bcad method skill · Sonnet 5.5","≈$1.20 / 100 pages"],val:["0.824","GEPA-optimized skill · Haiku 5.5","≈$0.05 / 100 pages"]},
  qa:{none:"Benchmark ready (4,075 Thai exam questions). Model results come with the first runs."},
  tr:{none:"No benchmark yet. Translation will be judged in the arena. Tell us you need it."},
@@ -819,7 +821,7 @@ const answers={
  other:{none:'Not on the list? <a href="#request">Tell us what you need</a> and we will look for the best AI for it.'}
 };
 function showAnswer(){const a=answers[document.getElementById("pick-task").value];
- document.getElementById("pick-out").innerHTML=a.top?`<div class="answer"><div class="pick top"><span class="lab">Top performance</span><span class="score num">${a.top[0]}</span><span class="meta">${a.top[1]} · ${a.top[2]}</span></div><div class="pick val"><span class="lab">Best value</span><span class="score num">${a.val[0]}</span><span class="meta">${a.val[1]} · ${a.val[2]}</span></div></div>`:`<div class="answer"><div class="none">${a.none}</div></div>`;}
+ document.getElementById("pick-out").innerHTML=a.html?a.html:a.top?`<div class="answer"><div class="pick top"><span class="lab">Top performance</span><span class="score num">${a.top[0]}</span><span class="meta">${a.top[1]} · ${a.top[2]}</span></div><div class="pick val"><span class="lab">Best value</span><span class="score num">${a.val[0]}</span><span class="meta">${a.val[1]} · ${a.val[2]}</span></div></div>`:`<div class="answer"><div class="none">${a.none}</div></div>`;}
 // request form
 
 function rqLink(){const v=id=>document.getElementById(id).value.trim();
