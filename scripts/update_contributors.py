@@ -7,7 +7,7 @@ python3 scripts/update_contributors.py --offline  # only rebuild index.html from
 People come from four places:
   1. commit authors of every public BuddhistAI repository (skills, benchmarks, and the rest),
   2. public members of the BuddhistAI organization,
-  3. authors of community entries in buddhist-skills: every community/*/*/CARD.md. A card with
+  3. authors of entries in buddhist-prompt-library: every <topic>-<language>/<entry>/CARD.md. A card with
      `github:` adds that GitHub account. A card without it adds `authors` by name, with the
      `avatar:` picture if there is one (these go in "others" in contributors.json),
   4. contributors-extra.json, for people and groups to credit by hand (for example, an author of
@@ -44,14 +44,17 @@ def frontmatter(text):
     return out
 
 
+LIBRARY = 'buddhist-prompt-library'  # shared, unmeasured entries (was buddhist-skills community/)
+
+
 def community_cards():
-    """Frontmatter of every community/<group>/<entry>/CARD.md in buddhist-skills (main)."""
-    with fetch(f'{API}/repos/{ORG}/buddhist-skills/git/trees/main?recursive=1') as r:
+    """Frontmatter of every <group>/<entry>/CARD.md in buddhist-prompt-library (main)."""
+    with fetch(f'{API}/repos/{ORG}/{LIBRARY}/git/trees/main?recursive=1') as r:
         tree = json.load(r)['tree']
     cards = []
     for t in tree:
-        if re.fullmatch(r'community/[^/]+/[^/]+/CARD\.md', t['path']):
-            with fetch(f'https://raw.githubusercontent.com/{ORG}/buddhist-skills/main/{t["path"]}') as r:
+        if re.fullmatch(r'[^/.][^/]*/[^/]+/CARD\.md', t['path']) and not t['path'].startswith('templates/'):
+            with fetch(f'https://raw.githubusercontent.com/{ORG}/{LIBRARY}/main/{t["path"]}') as r:
                 cards.append(frontmatter(r.read().decode('utf-8')))
     return cards
 
@@ -141,7 +144,7 @@ def avatar_html(people, others=(), indent='    '):
         name = html.escape(o['name'])
         pic = (f'<img src="{html.escape(o["avatar"])}" width="48" height="48" alt="{name}">' if o.get('avatar')
                else f'<span class="initials" aria-label="{name}">{html.escape(initials(o["name"]))}</span>')
-        url = html.escape(o.get('url') or 'https://github.com/BuddhistAI/buddhist-skills/tree/main/community')
+        url = html.escape(o.get('url') or 'https://github.com/BuddhistAI/buddhist-prompt-library')
         rows.append(f'{indent}<a href="{url}" title="{name}">{pic}</a>')
     return '\n'.join(rows)
 

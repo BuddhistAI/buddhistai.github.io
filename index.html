@@ -341,7 +341,7 @@ footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between}
         <input id="hero-repo" type="url" autocomplete="off" placeholder="github.com/you/your-solution">
         <button class="btn saffron" type="submit">Submit</button>
       </form>
-      <p class="up">No repo? <a href="https://github.com/BuddhistAI/buddhist-skills/issues/new?template=share.yml">Upload your files</a>. Your name and picture are optional.</p>
+      <p class="up">No repo? <a href="https://github.com/BuddhistAI/buddhist-prompt-library/issues/new?template=share.yml">Share your files</a>: a skill, project instructions, a Claude file, a style guide or a prompt. Needs a free GitHub account (<a href="https://github.com/signup">make one</a>). The form is public.</p>
       <div class="trust">
         <div><b class="num">15</b>tasks defined</div>
         <div><b class="num">1</b>with a live benchmark</div>
@@ -441,9 +441,10 @@ footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between}
   <div class="stage">
     <div class="stage-head"><h3>Art, practice and teaching</h3><span>Shared by the community, not yet measured.</span></div>
     <div class="cards">
-      <article class="card"><div class="top"><h3>Visual AI</h3><span class="status comm">Community</span></div><p>Thangka and iconography description, image prompts that respect tradition, art cataloguing.</p><div class="foot"><a href="https://github.com/BuddhistAI/buddhist-skills/tree/main/community">Browse shared entries</a></div></article>
-      <article class="card"><div class="top"><h3>Personal setups</h3><span class="status comm">Community</span></div><p>CLAUDE.md files and project instructions for practitioners, teachers and dharma centers.</p><div class="foot"><a href="https://github.com/BuddhistAI/buddhist-skills/tree/main/community">Browse shared entries</a></div></article>
+      <article class="card"><div class="top"><h3>Visual AI</h3><span class="status comm">Community</span></div><p>Thangka and iconography description, image prompts that respect tradition, art cataloguing.</p><div class="foot"><a href="https://github.com/BuddhistAI/buddhist-prompt-library">Open the prompt library</a><a href="https://github.com/BuddhistAI/buddhist-prompt-library/issues/new?template=share.yml">Share yours</a></div></article>
+      <article class="card"><div class="top"><h3>Personal setups</h3><span class="status comm">Community</span></div><p>CLAUDE.md files and project instructions for practitioners, teachers and dharma centers.</p><div class="foot"><a href="https://github.com/BuddhistAI/buddhist-prompt-library">Open the prompt library</a><a href="https://github.com/BuddhistAI/buddhist-prompt-library/issues/new?template=share.yml">Share yours</a></div></article>
     </div>
+    <p class="alt">Sharing needs a free GitHub account (<a href="https://github.com/signup">make one</a>). The form is public.</p>
   </div>
 </div></section>
 
@@ -662,9 +663,9 @@ footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between}
         <div class="detect-foot"><button class="btn saffron" type="button" id="d-go">Submit</button><span class="note-d" id="d-note"></span></div>
       </div>
       <div class="files">
-        <h3>No GitHub repo? Upload your files.</h3>
-        <p>A skill, a prompt or a Claude file: drag your files into a short form. Your name and picture are optional. We add it to Community and credit you.</p>
-        <a class="btn saffron" href="https://github.com/BuddhistAI/buddhist-skills/issues/new?template=share.yml">Upload your files</a>
+        <h3>No GitHub repo? Share a skill or any file you give to AI.</h3>
+        <p>The <a href="https://github.com/BuddhistAI/buddhist-prompt-library">prompt library</a> holds files people give to AI: your CLAUDE.md, project instructions, a style guide, a glossary or a prompt. Drag your files into a short form. You need a free GitHub account, and the form is public. Your name and picture are optional.</p>
+        <a class="btn saffron" href="https://github.com/BuddhistAI/buddhist-prompt-library/issues/new?template=share.yml">Share your files</a>
       </div>
       <p class="alt" style="margin-top:12px">Made something? Show it in <a href="https://github.com/orgs/BuddhistAI/discussions">the community</a> (Skills category).</p>
     </div>
@@ -773,9 +774,9 @@ render();
 
 const flows={
  skill:{ph:"https://github.com/you/your-skill",hint:"A folder with a SKILL.md is enough. Any language, any model.",
-  found:["<b>2 skills</b>: SKILL.md in skills/toc-extraction-tibetan and skills/segmentation-tibetan","<b>Tasks</b> toc-extraction and segmentation, <b>language</b> Tibetan (from the folder names)","<b>Benchmarks to run</b>: toc-extraction bo 2.0.0. Segmentation has no benchmark yet, so it stays in Community","<b>License</b>: MIT"],
-  note:"Listed in Community now. Scores in about an hour.",
-  steps:[["We read the repo","Find each SKILL.md and guess its task and language from the name. You confirm or fix the guess."],["Listed right away","It shows under Community, unmeasured, so others can try it."],["Scored for free","A GitHub Action runs it on every benchmark for its task, on the standard models. A maintainer checks the run."],["On the leaderboard","Your skill gets a row. If it beats the top or best-value pick, it becomes the installed skill."],["New leader? We celebrate you","We congratulate you and announce it on LinkedIn and X, crediting you and your team."]]},
+  found:["<b>2 skills</b>: SKILL.md in skills/toc-extraction-tibetan and skills/segmentation-tibetan","<b>Tasks</b> toc-extraction and segmentation, <b>language</b> Tibetan (from the folder names)","<b>Benchmarks to run</b>: toc-extraction bo 2.0.0. Segmentation has no benchmark yet, so it stays in the prompt library","<b>License</b>: MIT"],
+  note:"A maintainer lists it in the prompt library, usually within a few days. Scored when its task has a benchmark.",
+  steps:[["You send the form","The Share form opens with your link filled in. Add the language and a license."],["Listed by a maintainer","It shows in the prompt library, unmeasured, so others can try it."],["Measured, for free","If its task has a benchmark, a maintainer adds it as a variant in the task's own repo (for example <a href=\"https://github.com/BuddhistAI/toc-extraction-tibetan\">toc-extraction-tibetan</a>) and runs it at least 3 times. Or open a pull request with your variant in that repo yourself."],["On the leaderboard","Your skill gets a row with your name, the model and the data version. If it beats the top or best-value pick, it becomes the installed skill."],["New leader? We celebrate you","We congratulate you and announce it on LinkedIn and X, crediting you and your team."]]},
  model:{ph:"https://huggingface.co/your-org/your-model",hint:"A Hugging Face model, an OpenRouter model ID, or an API endpoint you host.",
   found:["<b>Model</b> your-org/your-model, 8B parameters, open weights","<b>Can run</b>: every task benchmark with a plain prompt, every installed skill, and every Q&amp;A benchmark","<b>Languages</b> Tibetan, English (from the model card)","<b>License</b>: Apache 2.0"],
   note:"Queued. Results for all tasks in about a day.",
@@ -787,7 +788,7 @@ const flows={
 };
 let kind="skill";
 const subBench={
- "toc-extraction":"Scored on <b>TOC extraction, Tibetan 2.0.0</b> (85 passages). Your result goes on the leaderboard.",
+ "toc-extraction":"A maintainer runs it on <b>TOC extraction, Tibetan 2.0.0</b> (85 passages), and the result goes on the leaderboard.",
  "qa":"Scored on the Q&amp;A benchmarks, starting with <b>Thai Dhamma exams</b> (4,075 questions).",
  "all":"Scored on <b>every benchmark</b>, with no skill and with each top skill.",
  "segmentation":"Benchmark <b>in progress</b>. Your entry is listed now and scored when it is ready.",
@@ -795,7 +796,8 @@ const subBench={
 };
 function benchLine(){const t=document.getElementById("sub-task").value;
  if(kind==="bench"&&t!=="new"&&subBench[t]){document.getElementById("sub-bench").innerHTML=t==="toc-extraction"?"Existing benchmark: <b>TOC extraction, Tibetan 2.0.0</b>. Your data extends it or becomes a second set; every skill is scored on both.":"Your data joins the benchmarks for this task, and every skill is scored on it.";return}
- document.getElementById("sub-bench").innerHTML=subBench[t]||(kind==="bench"?"No benchmark yet. <b>Your data could be the first one</b> for this task.":"No benchmark yet. Your entry is listed in Community now and scored once a benchmark exists.");}
+ if(kind==="skill"&&t==="new"){document.getElementById("sub-bench").innerHTML="New task? A maintainer lists your skill in the prompt library and opens a <b>request</b> on the Skills board, so others can vote and help build a benchmark.";return}
+ document.getElementById("sub-bench").innerHTML=subBench[t]||(kind==="bench"?"No benchmark yet. <b>Your data could be the first one</b> for this task.":"No benchmark yet. A maintainer lists your entry in the prompt library, and it is scored once a benchmark exists.");}
 document.getElementById("sub-task").addEventListener("change",benchLine);
 
 function setKind(k){kind=k;const f=flows[k];
@@ -812,7 +814,8 @@ document.getElementById("paste").addEventListener("submit",e=>{e.preventDefault(
  const url=/^https?:\/\//.test(v)?v:"https://"+v;
  const sel=document.getElementById("sub-task"),task=sel.value,taskName=sel.options[sel.selectedIndex].text;
  const short=url.replace(/^https?:\/\/(www\.)?/,"");let base,q;
- if(task==="new"&&kind==="bench"){base="https://github.com/BuddhistAI/buddhist-benchmarks/issues/new?";q=new URLSearchParams({template:"propose-benchmark.yml",title:"Propose benchmark: "+short})}
+ if(kind==="skill"){base="https://github.com/BuddhistAI/buddhist-prompt-library/issues/new?";q=new URLSearchParams({template:"share.yml",title:"Share: "+short,link:url,name:short,notes:"Task: "+taskName+" ("+task+")"+(task==="new"?". This is a new task: please open a task request.":"")})}
+ else if(task==="new"&&kind==="bench"){base="https://github.com/BuddhistAI/buddhist-benchmarks/issues/new?";q=new URLSearchParams({template:"propose-benchmark.yml",title:"Propose benchmark: "+short})}
  else if(task==="new"){base="https://github.com/BuddhistAI/buddhist-skills/issues/new?";q=new URLSearchParams({template:"request.yml",title:"New task, with a "+what+": "+short,example:"My "+what+": "+url})}
  else{base="https://github.com/BuddhistAI/buddhist-skills/issues/new?";q=new URLSearchParams({title:"Submit "+what+" for "+taskName+": "+short,body:"Link: "+url+"\n\nWhat it is: "+what+"\n\nTask: "+taskName+" ("+task+")\n\nLanguage:\n\nLicense:\n"})}
  window.open(base+q.toString(),"_blank","noopener");});
