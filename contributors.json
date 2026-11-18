@@ -3,16 +3,28 @@
   "people": [
     {
       "login": "ngawangtrinley",
-      "contributions": 50,
+      "contributions": 77,
       "sources": [
         "buddhist-skills",
         "buddhist-benchmarks",
         ".github",
         "toc-extraction-tibetan",
+        "buddhist-bench",
         "knowledge-base",
+        "design",
         "buddhistai.github.io",
+        "template-skill-repo",
+        "template-benchmark",
+        "translation-tibetan-to-french",
         "member",
         "credited"
+      ]
+    },
+    {
+      "login": "drupchen",
+      "contributions": 0,
+      "sources": [
+        "community"
       ]
     },
     {
