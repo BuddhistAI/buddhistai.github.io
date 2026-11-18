@@ -3,7 +3,7 @@ title: "Share a skill or any file you give to AI"
 date: 2026-11-18
 author: NT (with Claude)
 journeys: [share-know-how]
-pages: [https://buddhistai.github.io/ (hero "For AI developers" box, "Art, practice and teaching" cards, Contribute section, the paste-a-link helper), https://github.com/BuddhistAI/buddhist-prompt-library (README, Share form), buddhist-skills README, CONTRIBUTING, SKILLS.md]
+pages: [https://buddhistai.github.io/ (hero "For AI developers" box, "Art, practice and teaching" cards, Contribute section, the paste-a-link helper), https://github.com/BuddhistAI/buddhist-prompts (README, Share form), buddhist-skills README, CONTRIBUTING, SKILLS.md]
 state: built
 ---
 
@@ -19,7 +19,7 @@ NT asked: "How can people share other parts of their setup like their md files?"
 
 ### A. Where things live
 
-1. New repo **BuddhistAI/buddhist-prompt-library** holds everything shared and not measured. README title "Buddhist prompt library" (no emoji). First line: "Files that people give to AI for Buddhist work, shared so others can learn from them and use them." Second line: "Also skills and workflows that have no score yet." Then the list of kinds.
+1. New repo **BuddhistAI/buddhist-prompts** holds everything shared and not measured. README title "Buddhist prompt library" (no emoji). First line: "Files that people give to AI for Buddhist work, shared so others can learn from them and use them." Second line: "Also skills and workflows that have no score yet." Then the list of kinds.
 2. The one existing entry, `community/personal-ai-setup-english/shoukei-matsumoto-my-dharma/`, is copied unchanged (CARD.md with `authors`, SOURCE.md, `my-dharma.md`) to the same folder path at the root of the new repo. `task:` in CARD.md becomes `topic:`.
 3. Challengers (`buddhist-skills/drafts/`) move to the task's **workshop repo** (one repo per skill, made from template-skill-repo), as `variants/<name>/`: the TOC GEPA draft to [toc-extraction-tibetan](https://github.com/BuddhistAI/toc-extraction-tibetan) (already there as `variants/gepa-v1`), Drupchen-method drafts to the new [translation-tibetan-to-french](https://github.com/BuddhistAI/translation-tibetan-to-french). CONTRIBUTING "From challenger to promoted skill" says: "Put your challenger in the task's workshop repo as a variant, or in your own repo."
 4. buddhist-skills keeps `skills/`, `shared/` and the router skill `ask-buddhistai`. `community/README.md`, `drafts/README.md` and a `README.md` in each moved entry folder (today one: `community/personal-ai-setup-english/shoukei-matsumoto-my-dharma/`) stay as one-line pointers: "This moved to <link to the same entry>."
@@ -44,7 +44,7 @@ NT asked: "How can people share other parts of their setup like their md files?"
 | Other | other |
 
 - Other fields stay: language, what it does, link or files, notes, name, picture, license, permission.
-- buddhist-skills keeps a stub `share.yml` named "Share your files (moved)": a text block "This form has moved. Open **[Share your files](https://github.com/BuddhistAI/buddhist-prompt-library/issues/new?template=share.yml)**." and one optional field "Anything else? (optional)" (GitHub needs one real field). Its `config.yml` also gets a "Share your files" link to the new form. Old links still land somewhere useful.
+- buddhist-skills keeps a stub `share.yml` named "Share your files (moved)": a text block "This form has moved. Open **[Share your files](https://github.com/BuddhistAI/buddhist-prompts/issues/new?template=share.yml)**." and one optional field "Anything else? (optional)" (GitHub needs one real field). Its `config.yml` also gets a "Share your files" link to the new form. Old links still land somewhere useful.
 - The Language field help adds: "If it is not for one Buddhist language, give the language it is written in."
 - Maintainer steps: close the issue with the pull request (`Closes #<issue>`) and post the link to the entry in the issue, so the author gets the message and the link. If a shared skill's task has a benchmark but no workshop repo yet, it stays in the prompt library and the maintainer notes it on the task's Skills board card.
 
@@ -64,7 +64,7 @@ NT asked: "How can people share other parts of their setup like their md files?"
 2. Contribute section box: heading **No GitHub repo? Share a skill or any file you give to AI.** Text: "The prompt library holds files people give to AI: your CLAUDE.md, project instructions, a style guide, a glossary or a prompt. Drag your files into a short form. You need a free GitHub account, and the form is public. Your name and picture are optional." Button **Share your files**.
 3. "Art, practice and teaching" cards (Visual AI, Personal setups): links **Open the prompt library** (to the repo) and **Share yours** (to the form), with a small line under them: "Sharing needs a free GitHub account ([make one](https://github.com/signup)). The form is public." Translators who skip the "For AI developers" box see these. The "Community" badge stays: it still means "shared, not measured".
 4. Paste-a-link helper (the Contribute form that shows "Found" and four steps). For a **skill**, Submit now opens the prompt library Share form (query `template=share.yml&title=Share: <link>&link=<url>&name=<link>&notes=Task: <task>` (plus "please open a task request" for a new task); the form's name field has id `name`, not `title`). Today it opens a blank issue in buddhist-skills. Skill steps: 1 "You send the form: the Share form opens with your link filled in." 2 "Listed by a maintainer". 3 "Measured, for free: if its task has a benchmark, a maintainer adds it as a variant in the task's workshop repo and runs it at least 3 times. Or open a pull request with your variant there yourself." 4 "On the leaderboard: a row with your name, the model and the data version." The old step "A GitHub Action runs it" is removed (no such Action exists). TOC task line: "A maintainer runs it on TOC extraction, Tibetan 2.0.0 (85 passages), and the result goes on the leaderboard." This holds for every task choice, "A new task, not listed" included (the maintainer then also opens a task request; the task line says so). Models and benchmark data keep their current routes. Words: "it stays in the prompt library", note "A maintainer lists it in the prompt library, usually within a few days. Scored when its task has a benchmark.", step 2 "Listed by a maintainer: it shows in the prompt library, unmeasured, so others can try it.", task line "No benchmark yet. A maintainer lists your entry in the prompt library, and it is scored once a benchmark exists."
-5. Contributors job (`scripts/update_contributors.py`): reads `[^/]+/[^/]+/CARD.md` in buddhist-prompt-library (`templates/` has no CARD.md at that depth), and the fallback link for people without a GitHub page goes to the prompt library. **Order:** create the `community-share` label in the prompt library; push the prompt library with the entry; then the script; then remove the moved files from `community/` and `drafts/` in buddhist-skills and keep the pointer READMEs. The [Skills board](https://github.com/orgs/BuddhistAI/projects/1) allows only one auto-add rule on the free plan (it watches buddhist-skills), so maintainers add prompt library Share issues to the board by hand until NT decides on a paid plan or a small Action. Handbook architecture (boards and forms tables) and how-to change to match.
+5. Contributors job (`scripts/update_contributors.py`): reads `[^/]+/[^/]+/CARD.md` in buddhist-prompts (`templates/` has no CARD.md at that depth), and the fallback link for people without a GitHub page goes to the prompt library. **Order:** create the `community-share` label in the prompt library; push the prompt library with the entry; then the script; then remove the moved files from `community/` and `drafts/` in buddhist-skills and keep the pointer READMEs. The [Skills board](https://github.com/orgs/BuddhistAI/projects/1) allows only one auto-add rule on the free plan (it watches buddhist-skills), so maintainers add prompt library Share issues to the board by hand until NT decides on a paid plan or a small Action. Handbook architecture (boards and forms tables) and how-to change to match.
 
 ### E. buddhist-skills
 
@@ -77,7 +77,7 @@ share-know-how, before → after:
 | # | Before | After |
 | --- | --- | --- |
 | 1 | Homepage: "No repo? Upload your files." | Homepage: hero line "No repo? Share your files…", Contribute box, or "Share yours" on the Art, practice and teaching cards |
-| 2 | Share form in buddhist-skills ("Share a skill") | Share form in buddhist-prompt-library ("Share your files"), with setup kinds first, and clear notes on the GitHub account and that it is public |
+| 2 | Share form in buddhist-skills ("Share a skill") | Share form in buddhist-prompts ("Share your files"), with setup kinds first, and clear notes on the GitHub account and that it is public |
 | 3 | Maintainer adds a `community/` entry in buddhist-skills, or a Papers page | Maintainer adds a prompt library entry, or a Papers page for papers and guides to read. A skill for a task with a benchmark is also added as a variant in its workshop repo |
 | 4 | Author finds it in buddhist-skills `community/` | GitHub tells the author; they find it in the prompt library list and their name in the contributors row |
 
@@ -85,7 +85,7 @@ New "Done when": "the entry is listed in the prompt library (or a Papers page in
 
 ## Files
 
-buddhist-prompt-library (all new, see C); buddhistai.github.io `index.html` and `scripts/update_contributors.py`; buddhist-skills (see E); toc-extraction-tibetan `variants/gepa-v1/VARIANT.md` (adds the scores from the draft); translation-tibetan-to-french (new); buddhist-benchmarks README line 69 and `tasks/translation/harness/run.py` usage line; knowledge-base journey, handbook (architecture, conventions, how-to, status, leaderboard-app), governance, glossary, `learn/write-your-first-skill.md`, experiment PLAN link (as a LOG note, since PLAN is frozen), design `VOICE.md`.
+buddhist-prompts (all new, see C); buddhistai.github.io `index.html` and `scripts/update_contributors.py`; buddhist-skills (see E); toc-extraction-tibetan `variants/gepa-v1/VARIANT.md` (adds the scores from the draft); translation-tibetan-to-french (new); buddhist-benchmarks README line 69 and `tasks/translation/harness/run.py` usage line; knowledge-base journey, handbook (architecture, conventions, how-to, status, leaderboard-app), governance, glossary, `learn/write-your-first-skill.md`, experiment PLAN link (as a LOG note, since PLAN is frozen), design `VOICE.md`.
 
 ## Not in scope
 

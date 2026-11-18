@@ -341,7 +341,7 @@ footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between}
         <input id="hero-repo" type="url" autocomplete="off" placeholder="github.com/you/your-solution">
         <button class="btn saffron" type="submit">Submit</button>
       </form>
-      <p class="up">No repo? <a href="https://github.com/BuddhistAI/buddhist-prompt-library/issues/new?template=share.yml">Share your files</a>: a skill, project instructions, a Claude file, a style guide or a prompt. Needs a free GitHub account (<a href="https://github.com/signup">make one</a>). The form is public.</p>
+      <p class="up">No repo? <a href="https://github.com/BuddhistAI/buddhist-prompts/issues/new?template=share.yml">Share your files</a>: a skill, project instructions, a Claude file, a style guide or a prompt. Needs a free GitHub account (<a href="https://github.com/signup">make one</a>). The form is public.</p>
       <div class="trust">
         <div><b class="num">15</b>tasks defined</div>
         <div><b class="num">1</b>with a live benchmark</div>
@@ -441,8 +441,8 @@ footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between}
   <div class="stage">
     <div class="stage-head"><h3>Art, practice and teaching</h3><span>Shared by the community, not yet measured.</span></div>
     <div class="cards">
-      <article class="card"><div class="top"><h3>Visual AI</h3><span class="status comm">Community</span></div><p>Thangka and iconography description, image prompts that respect tradition, art cataloguing.</p><div class="foot"><a href="https://github.com/BuddhistAI/buddhist-prompt-library">Open the prompt library</a><a href="https://github.com/BuddhistAI/buddhist-prompt-library/issues/new?template=share.yml">Share yours</a></div></article>
-      <article class="card"><div class="top"><h3>Personal setups</h3><span class="status comm">Community</span></div><p>CLAUDE.md files and project instructions for practitioners, teachers and dharma centers.</p><div class="foot"><a href="https://github.com/BuddhistAI/buddhist-prompt-library">Open the prompt library</a><a href="https://github.com/BuddhistAI/buddhist-prompt-library/issues/new?template=share.yml">Share yours</a></div></article>
+      <article class="card"><div class="top"><h3>Visual AI</h3><span class="status comm">Community</span></div><p>Thangka and iconography description, image prompts that respect tradition, art cataloguing.</p><div class="foot"><a href="https://github.com/BuddhistAI/buddhist-prompts">Open the prompt library</a><a href="https://github.com/BuddhistAI/buddhist-prompts/issues/new?template=share.yml">Share yours</a></div></article>
+      <article class="card"><div class="top"><h3>Personal setups</h3><span class="status comm">Community</span></div><p>CLAUDE.md files and project instructions for practitioners, teachers and dharma centers.</p><div class="foot"><a href="https://github.com/BuddhistAI/buddhist-prompts">Open the prompt library</a><a href="https://github.com/BuddhistAI/buddhist-prompts/issues/new?template=share.yml">Share yours</a></div></article>
     </div>
     <p class="alt">Sharing needs a free GitHub account (<a href="https://github.com/signup">make one</a>). The form is public.</p>
   </div>
@@ -664,8 +664,8 @@ footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between}
       </div>
       <div class="files">
         <h3>No GitHub repo? Share a skill or any file you give to AI.</h3>
-        <p>The <a href="https://github.com/BuddhistAI/buddhist-prompt-library">prompt library</a> holds files people give to AI: your CLAUDE.md, project instructions, a style guide, a glossary or a prompt. Drag your files into a short form. You need a free GitHub account, and the form is public. Your name and picture are optional.</p>
-        <a class="btn saffron" href="https://github.com/BuddhistAI/buddhist-prompt-library/issues/new?template=share.yml">Share your files</a>
+        <p>The <a href="https://github.com/BuddhistAI/buddhist-prompts">prompt library</a> holds files people give to AI: your CLAUDE.md, project instructions, a style guide, a glossary or a prompt. Drag your files into a short form. You need a free GitHub account, and the form is public. Your name and picture are optional.</p>
+        <a class="btn saffron" href="https://github.com/BuddhistAI/buddhist-prompts/issues/new?template=share.yml">Share your files</a>
       </div>
       <p class="alt" style="margin-top:12px">Made something? Show it in <a href="https://github.com/orgs/BuddhistAI/discussions">the community</a> (Skills category).</p>
     </div>
@@ -815,7 +815,7 @@ document.getElementById("paste").addEventListener("submit",e=>{e.preventDefault(
  const url=/^https?:\/\//.test(v)?v:"https://"+v;
  const sel=document.getElementById("sub-task"),task=sel.value,taskName=sel.options[sel.selectedIndex].text;
  const short=url.replace(/^https?:\/\/(www\.)?/,"");let base,q;
- if(kind==="skill"){base="https://github.com/BuddhistAI/buddhist-prompt-library/issues/new?";q=new URLSearchParams({template:"share.yml",title:"Share: "+short,link:url,name:short,notes:"Task: "+taskName+" ("+task+")"+(task==="new"?". This is a new task: please open a task request.":"")})}
+ if(kind==="skill"){base="https://github.com/BuddhistAI/buddhist-prompts/issues/new?";q=new URLSearchParams({template:"share.yml",title:"Share: "+short,link:url,name:short,notes:"Task: "+taskName+" ("+task+")"+(task==="new"?". This is a new task: please open a task request.":"")})}
  else if(task==="new"&&kind==="bench"){base="https://github.com/BuddhistAI/buddhist-benchmarks/issues/new?";q=new URLSearchParams({template:"propose-benchmark.yml",title:"Propose benchmark: "+short})}
  else if(task==="new"){base="https://github.com/BuddhistAI/buddhist-skills/issues/new?";q=new URLSearchParams({template:"request.yml",title:"New task, with a "+what+": "+short,example:"My "+what+": "+url})}
  else{base="https://github.com/BuddhistAI/buddhist-skills/issues/new?";q=new URLSearchParams({title:"Submit "+what+" for "+taskName+": "+short,body:"Link: "+url+"\n\nWhat it is: "+what+"\n\nTask: "+taskName+" ("+task+")\n\nLanguage:\n\nLicense:\n"})}
