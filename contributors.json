@@ -21,17 +21,18 @@
       ]
     },
     {
+      "login": "kaldan007",
+      "contributions": 1,
+      "sources": [
+        "bo-quotation-detection",
+        "credited"
+      ]
+    },
+    {
       "login": "drupchen",
       "contributions": 0,
       "sources": [
         "community"
-      ]
-    },
-    {
-      "login": "kaldan007",
-      "contributions": 0,
-      "sources": [
-        "credited"
       ]
     },
     {
