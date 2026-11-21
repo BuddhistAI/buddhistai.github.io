@@ -22,9 +22,10 @@
     },
     {
       "login": "kaldan007",
-      "contributions": 1,
+      "contributions": 2,
       "sources": [
         "bo-quotation-detection",
+        "buddhist-eval",
         "credited"
       ]
     },
