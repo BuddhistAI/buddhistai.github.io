@@ -2,6 +2,21 @@
   "org": "BuddhistAI",
   "people": [
     {
+      "login": "tenkus47",
+      "contributions": 255,
+      "sources": [
+        "arena_backend",
+        "arena_frontend"
+      ]
+    },
+    {
+      "login": "tentse",
+      "contributions": 98,
+      "sources": [
+        "arena_backend"
+      ]
+    },
+    {
       "login": "ngawangtrinley",
       "contributions": 77,
       "sources": [
@@ -21,9 +36,26 @@
       ]
     },
     {
-      "login": "kaldan007",
-      "contributions": 2,
+      "login": "Karma-Tsering",
+      "contributions": 36,
       "sources": [
+        "arena_backend",
+        "arena_frontend"
+      ]
+    },
+    {
+      "login": "dhakar66",
+      "contributions": 19,
+      "sources": [
+        "arena_backend",
+        "arena_frontend"
+      ]
+    },
+    {
+      "login": "kaldan007",
+      "contributions": 6,
+      "sources": [
+        "arena_frontend",
         "bo-quotation-detection",
         "buddhist-eval",
         "credited"
