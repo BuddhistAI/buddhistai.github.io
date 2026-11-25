@@ -53,8 +53,9 @@
     },
     {
       "login": "kaldan007",
-      "contributions": 6,
+      "contributions": 14,
       "sources": [
+        "arena_backend",
         "arena_frontend",
         "bo-quotation-detection",
         "buddhist-eval",
