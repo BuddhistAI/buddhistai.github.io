@@ -10,6 +10,17 @@
       ]
     },
     {
+      "login": "kaldan007",
+      "contributions": 126,
+      "sources": [
+        "arena_backend",
+        "arena_frontend",
+        "bo-quotation-detection",
+        "buddhist-eval",
+        "credited"
+      ]
+    },
+    {
       "login": "tentse",
       "contributions": 98,
       "sources": [
@@ -49,17 +60,6 @@
       "sources": [
         "arena_backend",
         "arena_frontend"
-      ]
-    },
-    {
-      "login": "kaldan007",
-      "contributions": 14,
-      "sources": [
-        "arena_backend",
-        "arena_frontend",
-        "bo-quotation-detection",
-        "buddhist-eval",
-        "credited"
       ]
     },
     {
